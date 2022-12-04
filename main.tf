@@ -1,5 +1,6 @@
 module "bucket" {
-  source = "github.com/ptonini/terraform-aws-s3-bucket?ref=v1"
+  source = "ptonini/s3-bucket/aws"
+  version = "~> 1.0.0"
   name = var.bucket_name
   bucket_policy_statements = [
     {
