@@ -31,9 +31,6 @@ module "bucket" {
     }
   ]
   force_destroy = var.force_destroy_bucket
-  providers = {
-    aws = aws
-  }
 }
 
 resource "aws_cloudtrail" "this" {
