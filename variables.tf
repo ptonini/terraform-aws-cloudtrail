@@ -2,6 +2,10 @@ variable "name" {}
 
 variable "bucket_name" {}
 
+variable "bucket_kms_key_id" {
+  default = null
+}
+
 variable "force_destroy_bucket" {
   default = false
 }

@@ -1,7 +1,10 @@
 module "bucket" {
   source  = "ptonini/s3-bucket/aws"
-  version = "~> 1.3.0"
+  version = "~> 2.2.0"
   name    = var.bucket_name
+  server_side_encryption = {
+    kms_master_key_id = var.bucket_kms_key_id
+  }
   bucket_policy_statements = [
     {
       Sid    = "AWSCloudTrailAclCheck"
@@ -37,13 +40,13 @@ resource "aws_cloudtrail" "this" {
   name                          = var.name
   s3_bucket_name                = module.bucket.this.id
   include_global_service_events = var.include_global_service_events
+
   lifecycle {
     ignore_changes = [
-      tags,
+      tags["business_unit"],
+      tags["product"],
+      tags["env"],
       tags_all
     ]
   }
-  depends_on = [
-    module.bucket
-  ]
 }
