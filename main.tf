@@ -37,6 +37,8 @@ resource "aws_cloudtrail" "this" {
   name                          = var.name
   s3_bucket_name                = module.bucket.this.id
   include_global_service_events = var.include_global_service_events
+  is_multi_region_trail         = var.is_multi_region_trail
+  tags                          = var.tags
 
   lifecycle {
     ignore_changes = [
